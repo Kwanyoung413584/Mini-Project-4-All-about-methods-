@@ -9,9 +9,11 @@ class Main {
      // objects
     Scanner scan = new Scanner(System.in);
     gettestscoreAvg scoreAvg = new gettestscoreAvg();
+    passedScore scorePassed = new passedScore();
 
      // variables
     int scorestoCompare = 5;
+    double lowestpassingGrade = 70;
     double[] testScores = new double[scorestoCompare];
 
      // main code
@@ -46,7 +48,7 @@ class Main {
 
      // for loop which will print out the values you inputed
     for (int i = 0; i < testScores.length; i++) {
-      System.out.println((i + 1) + " " + testScores[i]);
+      System.out.println((i + 1) + " " + testScores[i] + "%");
     } 
     
     newLine();
@@ -61,8 +63,20 @@ class Main {
 
     sleep(1500);
 
-    System.out.println("Your average from your 5 scores: " + finalAverage);
-    System.out.println("Estimated average: " + (int)(finalAverage + 0.5));
+    System.out.println("Your average from your 5 scores: " + finalAverage + "%");
+    System.out.println("Estimated average: " + ((int)(finalAverage + 0.5)) + "%");
+
+    newLine();
+
+    sleep(1500);
+
+    System.out.println("Checking if you passed...");
+    newLine();
+
+     // uses the passedScore method which was called to get your passing results
+    boolean[] finalPassed = scorePassed.getBooleans(testScores, finalAverage, lowestpassingGrade);
+
+    sleep(1500);
 
 
   }
@@ -93,15 +107,38 @@ class gettestscoreAvg {
     
     avgResult = avgResult/scorestoCompare;
 
+    // return the average
     return avgResult;
   }
 }
 
- // if passed class
+ // calculate passing result class
 class passedScore {
-   // if passed class method (Returns a boolean based on the average from your 5 test scores)
-  public boolean getAvg(double[] testscoreArray, double average) {
+   // calculate passing result method (Returns a boolean based on the average from your 5 test scores)
+  public boolean[][] getBooleans(double[] testscoreArray, double average, double lowestGrade) {
+    boolean[] returnarrayResult = {};
+    boolean returnavgResult;
+    
 
-    return true;
+    for (int i = 0; i < testscoreArray.length; i++) {
+      if (testscoreArray[i] < lowestGrade) {
+        returnarrayResult[i] = false;
+      }
+      else {
+        returnarrayResult[i] = true;
+      }
+    } 
+
+    if (average < lowestGrade) {
+      returnavgResult = false;
+    }
+    else {
+      returnavgResult = true;
+    }
+
+    boolean[][] finalbooleanResults = {returnarrayResult, {returnavgResult}};
+
+     // return the passing result
+    return finalbooleanResults;
   }
 }
