@@ -74,13 +74,51 @@ class Main {
     newLine();
 
      // uses the passedScore method which was called to get your passing results
-    boolean[] finalPassed = scorePassed.getBooleans(testScores, finalAverage, lowestpassingGrade);
+    boolean[][] finalPassed = scorePassed.getBooleans(testScores, finalAverage, lowestpassingGrade, scorestoCompare);
+
+    boolean[] finalpassedArray = new boolean[scorestoCompare];
+    boolean finalpassedAvg;
+
+    for (int i = 0; i < testScores.length; i++) {
+      finalpassedArray[i] = finalPassed[0][i];
+    }
+
+    finalpassedAvg = finalPassed[1][0];
+
+
+    sleep(3000);
+
+    System.out.println("Here are your pass status for each assignment:");
+
+    newLine();
 
     sleep(1500);
 
+    for (int i = 0; i < testScores.length; i++) {
+      System.out.println(testScores[i] + " : " + finalpassedArray[i]);
+    }
+
+    sleep(1500);
+
+    newLine();
+
+    System.out.println("Here is whenever you passed your average:");
+
+    newLine();
+
+    sleep(1500);
+
+    System.out.println(finalAverage + " : " + finalpassedAvg);
+
+    newLine();
+
+    sleep(3000);
+
+    System.out.println("Thank you for using this machine :)");
 
   }
 
+   // usless main methods
   static void sleep(int milli) {
       try {
         Thread.sleep(milli);
@@ -95,17 +133,19 @@ class Main {
   }
 }
 
+// important methods
+
  // avg test score class
 class gettestscoreAvg {
    // avg test score method (Returns a double based on the average from your 5 test scores)
-  public double getAvg(double[] testscoreArray, int scorestoCompare) {
+  public double getAvg(double[] testscoreArray, int getscorestoCompare) {
     double avgResult = 0;
 
     for (int i = 0; i < testscoreArray.length; i++) {
       avgResult += testscoreArray[i];
     } 
     
-    avgResult = avgResult/scorestoCompare;
+    avgResult = avgResult/getscorestoCompare;
 
     // return the average
     return avgResult;
@@ -115,8 +155,8 @@ class gettestscoreAvg {
  // calculate passing result class
 class passedScore {
    // calculate passing result method (Returns a boolean based on the average from your 5 test scores)
-  public boolean[][] getBooleans(double[] testscoreArray, double average, double lowestGrade) {
-    boolean[] returnarrayResult = {};
+  public boolean[][] getBooleans(double[] testscoreArray, double average, double lowestGrade, int getscorestoCompare) {
+    boolean[] returnarrayResult = new boolean[getscorestoCompare];
     boolean returnavgResult;
     
 
