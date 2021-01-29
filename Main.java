@@ -12,24 +12,40 @@ class Main {
     passedScore scorePassed = new passedScore();
 
      // variables
-    int scorestoCompare = 5;
+    int scorestoCompare = 0;
     double lowestpassingGrade = 70;
-    double[] testScores = new double[scorestoCompare];
+    double[] testScores;
 
      // main code
  
      // introduction
     newLine();
 
-    System.out.println("Welcome to the 5TestAverager!");
+    System.out.println("Welcome to the TestAverager Program!");
     newLine();
 
     sleep(1500);
 
-    System.out.println("In this machine, it will get the average of 5 of your grades (can be doubles), then give you whenever you passed the lowest overall grade!");
+    System.out.println("In this program, it will get the average of your grades (can be doubles), then give you whenever you passed the lowest overall grade!");
     newLine();
 
     sleep(3000);
+
+     // scanner which will pick up a int from the user
+    System.out.println("How much grades do you want the program to calculate? (int)");
+    scorestoCompare = scan.nextInt();
+
+    newLine();
+
+    System.out.println("Great! This program will look for " + scorestoCompare + " grades and then print their results!");
+
+    // create a array for "testScores"
+    testScores = new double[scorestoCompare];
+
+    newLine();
+
+    sleep(3000);
+
 
     System.out.println("Have Fun!");
     sleep(3000);
@@ -37,12 +53,12 @@ class Main {
      // for loop which will gather the values you input through the scanner
     for (int i = 0; i < testScores.length; i++) {
       newLine();
-      System.out.println("What is your score for assignment " + (i + 1) + "?");
+      System.out.println("What is your grade for assignment " + (i + 1) + "? (" + (i + 1) + " / " + scorestoCompare + ")");
       testScores[i] = scan.nextDouble();
     }
 
     newLine();
-    System.out.println("Here are your scores:");
+    System.out.println("Here are your grades:");
 
     sleep(1500);
 
@@ -63,7 +79,7 @@ class Main {
 
     sleep(1500);
 
-    System.out.println("Your average from your 5 scores: " + finalAverage + "%");
+    System.out.println("Your average from your " + scorestoCompare + " grades: " + finalAverage + "%");
     System.out.println("Estimated average: " + ((int)(finalAverage + 0.5)) + "%");
 
     newLine();
@@ -95,7 +111,7 @@ class Main {
     sleep(1500);
 
     for (int i = 0; i < testScores.length; i++) {
-      System.out.println(testScores[i] + " : " + finalpassedArray[i]);
+      System.out.println(testScores[i] + "% : " + finalpassedArray[i]);
     }
 
     sleep(1500);
@@ -108,13 +124,13 @@ class Main {
 
     sleep(1500);
 
-    System.out.println(finalAverage + " : " + finalpassedAvg);
+    System.out.println(finalAverage + "% : " + finalpassedAvg);
 
     newLine();
 
     sleep(3000);
 
-    System.out.println("Thank you for using this machine :)");
+    System.out.println("Thank you for using this program :)");
 
   }
 
@@ -137,7 +153,7 @@ class Main {
 
  // avg test score class
 class gettestscoreAvg {
-   // avg test score method (Returns a double based on the average from your 5 test scores)
+   // avg test score method (Returns a double based on the average from your choosen test scores)
   public double getAvg(double[] testscoreArray, int getscorestoCompare) {
     double avgResult = 0;
 
@@ -154,7 +170,7 @@ class gettestscoreAvg {
 
  // calculate passing result class
 class passedScore {
-   // calculate passing result method (Returns a boolean based on the average from your 5 test scores)
+   // calculate passing result method (Returns a boolean based on the average from your choosen test scores)
   public boolean[][] getBooleans(double[] testscoreArray, double average, double lowestGrade, int getscorestoCompare) {
     boolean[] returnarrayResult = new boolean[getscorestoCompare];
     boolean returnavgResult;
